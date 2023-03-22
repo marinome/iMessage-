@@ -14,7 +14,7 @@ struct WelcomeScreenView: View {
                 Color("BgColor").edgesIgnoringSafeArea(.all)
                 VStack {
                     Spacer()
-                    Image(uiImage: #imageLiteral(resourceName: "onboard"))
+                    //Image(uiImage: #imageLiteral(resourceName: "onboard"))
                     Spacer()
                     PrimaryButton(title: "Get Started")
                     

@@ -33,5 +33,5 @@ struct MyEditor: View {
 }
 
 CodeEditor(source: $source, language: language,
-           flags: [ .selectable, .editable, .smartIndent ])
+           flags: [ .selectable, .editable, .smartIndent ])*/
 
