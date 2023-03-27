@@ -21,6 +21,6 @@ public struct Theme {
     public var currentLine: ThemeColor
     public var selection: ThemeColor
     public var colors: [String: ThemeColor]
-    public var font: ThemeColor
+    public var font: ThemeFont
     public var style: UIStyle
 }

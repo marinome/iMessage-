@@ -21,6 +21,8 @@
 		78AE787429988DED0053BB25 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE787329988DED0053BB25 /* ContentView.swift */; };
 		78AE787629988DF50053BB25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78AE787529988DF50053BB25 /* Assets.xcassets */; };
 		78AE787929988DF50053BB25 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78AE787829988DF50053BB25 /* Preview Assets.xcassets */; };
+		78C98BF629D13D10001748D7 /* Lexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C98BF529D13D10001748D7 /* Lexer.swift */; };
+		78C98BF829D1407E001748D7 /* UIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C98BF729D1407E001748D7 /* UIType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		78AE787329988DED0053BB25 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		78AE787529988DF50053BB25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78AE787829988DF50053BB25 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		78C98BF529D13D10001748D7 /* Lexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lexer.swift; sourceTree = "<group>"; };
+		78C98BF729D1407E001748D7 /* UIType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +83,12 @@
 				782BB29529CA8AE9005939E7 /* CopyAndPaste.swift */,
 				782BB29729CA8B1C005939E7 /* GenerateHighlight.swift */,
 				7822533E29CAFDEE00DED632 /* Languages.swift */,
+				78C98BF529D13D10001748D7 /* Lexer.swift */,
 				782BB29929CA8B47005939E7 /* Highlight.swift */,
 				782BB29129CA8A83005939E7 /* WelcomeScreenView.swift */,
 				7822533C29CAFC5300DED632 /* Theme.swift */,
 				7822534229CB06CE00DED632 /* Theme_Def.swift */,
+				78C98BF729D1407E001748D7 /* UIType.swift */,
 				78AE787529988DF50053BB25 /* Assets.xcassets */,
 				78AE787729988DF50053BB25 /* Preview Content */,
 			);
@@ -174,11 +180,13 @@
 				782BB29A29CA8B47005939E7 /* Highlight.swift in Sources */,
 				78AE787429988DED0053BB25 /* ContentView.swift in Sources */,
 				782BB29629CA8AE9005939E7 /* CopyAndPaste.swift in Sources */,
+				78C98BF629D13D10001748D7 /* Lexer.swift in Sources */,
 				7822534329CB06CE00DED632 /* Theme_Def.swift in Sources */,
 				7822534529CB089500DED632 /* RGBtoHex.swift in Sources */,
 				78AE787229988DED0053BB25 /* iMessageApp.swift in Sources */,
 				7822533F29CAFDEF00DED632 /* Languages.swift in Sources */,
 				782BB29829CA8B1C005939E7 /* GenerateHighlight.swift in Sources */,
+				78C98BF829D1407E001748D7 /* UIType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

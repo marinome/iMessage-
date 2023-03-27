@@ -8,10 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    
-    
-    
     @State private var code: String = ""
     @State private var language: String = ""
     
@@ -68,7 +64,7 @@ extension ContentView {
                 }
             }
             
-            return Theme(defaultFontColor: defaultColor, backgroundColor: backgroundColor, currentLine: currentLineColor, selection: selectionColor, cursor: cursorColor, colors: colors, font: ThemeFont.systemFont(ofSize: ThemeFont.systemFontSize), style: style, lineNumber: lineNumber, lineNumber_Active: lineNumber_Active)
+            return Theme(defaultFontColor: defaultColor, backgroundColor: backgroundColor, currentLine: currentLineColor, selection: selectionColor, colors: colors, font: ThemeFont.systemFont(ofSize: ThemeFont.systemFontSize), style: style)
         }
         return nil
     }
