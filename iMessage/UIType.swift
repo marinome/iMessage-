@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-/*make converting between AppKit and UIKit way easier.
- It makes common typaliases for classes & types in either framework
- It also includes a few of extensions that make using AppKit easier when coming from UIKit*/
+/*makes converting between AppKit and UIKit way easier; makes common typaliases for classes & types in either framework; includes a few of extensions that make using AppKit easier when coming from UIKit*/
 
 #if canImport(UIKit)
 import UIKit
@@ -20,7 +18,7 @@ public typealias ThemeFont = UIFont
 public typealias ThemeImage = UIImage
 public typealias TextView = UITextView
 public typealias BezierPath = UIBezierPath
-public typealias FireflyScrollView = UIScrollView
+public typealias ThemeScrollView = UIScrollView
 public typealias Screen = UIScreen
 public typealias Window = UIWindow
 public typealias EdgeInsets = UIEdgeInsets
@@ -38,7 +36,7 @@ public typealias ThemeFont = NSFont
 public typealias ThemeImage = NSImage
 public typealias TextView = NSTextView
 public typealias BezierPath = NSBezierPath
-public typealias FireflyScrollView = NSScrollView
+public typealias ThemeScrollView = NSScrollView
 public typealias Screen = NSScreen
 public typealias Window = NSWindow
 public typealias EdgeInsets = NSEdgeInsets

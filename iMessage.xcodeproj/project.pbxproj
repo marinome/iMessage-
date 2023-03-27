@@ -76,8 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				78AE787129988DED0053BB25 /* iMessageApp.swift */,
-				7822534029CB05AF00DED632 /* Languages_Def.swift */,
 				78AE787329988DED0053BB25 /* ContentView.swift */,
+				7822534029CB05AF00DED632 /* Languages_Def.swift */,
 				7822534429CB089500DED632 /* RGBtoHex.swift */,
 				782BB29329CA8ABE005939E7 /* SignInScreenView.swift */,
 				782BB29529CA8AE9005939E7 /* CopyAndPaste.swift */,

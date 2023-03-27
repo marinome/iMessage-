@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         //WelcomeScreenView()
-        Text("test")//test
+        Text("test").foregroundColor(Color(red: 174/255, green: 250/255, blue: 78/255))
     }
 }
 
@@ -38,32 +38,24 @@ struct PrimaryButton: View {
 }
 
 extension ContentView {
-    //Generates a theme with the given name
-    //Parameter name: The name of the theme you want to generate
-    //Returns: The generated theme
+    //generates theme w/ colors, parameter is theme (default for now), returns theme colors
     static public func getTheme(name: String) -> Theme? {
         if let theme = themes[name] {
-            let defaultColor = ThemeColor(hex: (theme["default"] as? String) ?? "#000000")
-            let backgroundColor = ThemeColor(hex: (theme["background"] as? String) ?? "#000000")
-            
-            let currentLineColor = ThemeColor(hex: (theme["currentLine"] as? String) ?? "#000000")
-            let selectionColor = ThemeColor(hex: (theme["selection"] as? String) ?? "#000000")
-            let cursorColor = ThemeColor(hex: (theme["cursor"] as? String) ?? "#000000")
-            
+            let defaultColor = ThemeColor(hex: (theme["default"] as? String) ?? "theme_black")
+            let backgroundColor = ThemeColor(hex: (theme["background"] as? String) ?? "theme_white")
+            let currentLineColor = ThemeColor(hex: (theme["currentLine"] as? String) ?? "theme_rose")
+            let selectionColor = ThemeColor(hex: (theme["selection"] as? String) ?? "theme_yellow")
+            //let cursorColor = ThemeColor(hex: (theme["cursor"] as? String) ?? "#000000")
             let styleRaw = theme["style"] as? String
             let style: Theme.UIStyle = styleRaw == "light" ? .light : .dark
-            
-            let lineNumber = ThemeColor(hex: (theme["lineNumber"] as? String) ?? "#000000")
-            let lineNumber_Active = ThemeColor(hex: (theme["lineNumber-Active"] as? String) ?? "#000000")
-            
+            //let lineNumber = ThemeColor(hex: (theme["lineNumber"] as? String) ?? "#000000")
+            //let lineNumber_Active = ThemeColor(hex: (theme["lineNumber-Active"] as? String) ?? "#000000")
             var colors: [String: ThemeColor] = [:]
-            
             if let cDefs = theme["definitions"] as? [String: String] {
                 for item in cDefs {
                     colors.merge([item.key: ThemeColor(hex: (item.value))]) { (first, _) -> ThemeColor in return first }
                 }
             }
-            
             return Theme(defaultFontColor: defaultColor, backgroundColor: backgroundColor, currentLine: currentLineColor, selection: selectionColor, colors: colors, font: ThemeFont.systemFont(ofSize: ThemeFont.systemFontSize), style: style)
         }
         return nil

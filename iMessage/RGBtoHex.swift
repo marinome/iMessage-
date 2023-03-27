@@ -19,9 +19,9 @@ extension ThemeColor {
         var r: CGFloat = 0.0
         var g: CGFloat = 0.0
         var b: CGFloat = 0.0
-        var a: CGFloat = 1.0 //alpha, don't think we need it, but we'll see
+        let a: CGFloat = 1.0 //alpha, don't think we need it, but we'll see
 
-        let length = hexSanitized.count
+       //let length = hexSanitized.count
 
         guard Scanner(string: hexSanitized).scanHexInt64(&rgb) else{self.init(red: r, green: g, blue: b, alpha: a);return}
         r = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
