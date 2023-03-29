@@ -16,17 +16,126 @@ enum TokenType {
     case comment
 }
 
-struct Token {
-    let type: TokenType
+/*struct Token {
+    //let type: TokenType
     let range: Range<String.Index>//m_white
     let color: UIColor
+}*/
+
+class Token {
+    var type: TokenType
+    var value: String
+    
+    init(type: TokenType, value: String) {
+        self.type = type
+        self.value = value
+    }
 }
+
+// Define a lexer class that can tokenize a string of input
+// Combined alternative into one for build purposes - MM
 
 class Lexer {
     let input: String
     var currentIndex: String.Index
     var currentChar: Character?
-    var tokens: [Token] = []
+    //var tokens: [Token] = []
+    
+    // Initialize the lexer with the input string
+    init(input: String) {
+        self.input = input
+        self.currentIndex = input.startIndex
+    }
+    
+    // Move the current index and current character forward by one
+    func advance() {
+        if currentIndex < input.endIndex {
+            currentIndex = input.index(after: currentIndex)
+            currentChar = input[currentIndex]
+        } else {
+            currentChar = nil
+        }
+    }
+    
+    // Peek at the next character in the input string without advancing
+    func peek() -> Character? {
+        let peekIndex = input.index(after: currentIndex)
+        if peekIndex < input.endIndex {
+            return input[peekIndex]
+        } else {
+            return nil
+        }
+    }
+    
+    // Tokenize the input string and return an array of tokens
+    func tokenize() -> [Token] {
+        var tokens = [Token]()
+        while currentIndex < input.endIndex {
+            if let char = currentChar {
+                if char.isWhitespace {
+                    advance()
+                } else if char.isLetter {
+                    let value = readIdentifier()
+                    let type = checkType(identifier: value)
+                    tokens.append(Token(type: type, value: value))
+                } else if char.isNumber {
+                    _ = readNumber()
+                    //tokens.append(Token(type: .constant, value: value))
+                } else if char == "\"" {
+                    let value = readString()
+                    tokens.append(Token(type: .string, value: value))
+                } else if "+-*/%".contains(char) {
+                    advance()
+                    //tokens.append(Token(type: .operator, value: String(char)))
+                } else {
+                    advance()
+                }
+            }
+        }
+        return tokens
+    }
+    
+    // Read an identifier from the input string
+    private func readIdentifier() -> String {
+        var value = ""
+        while let char = currentChar, char.isLetter, char.isNumber {
+            value.append(char)
+            advance()
+        }
+        return value
+    }
+    
+    // Read a number from the input string
+    private func readNumber() -> String {
+        var value = ""
+        while let char = currentChar, char.isNumber {
+            value.append(char)
+            advance()
+        }
+        return value
+    }
+    
+    // Read a string from the input string
+    private func readString() -> String {
+        advance()
+        var value = ""
+        while let char = currentChar, char != "\"" {
+            value.append(char)
+            advance()
+        }
+        advance()
+        return value
+    }
+    
+    // Check the type of an identifier and return the appropriate TokenType
+    private func checkType(identifier: String) -> TokenType {
+        switch identifier {
+        case "int", "float", "double", "char":
+            return .keyword
+        default:
+            return .identifier
+        }
+    }
     
     let keywordColors: [String: UIColor] = [:
             /*let m_white = Color(red: 246/255, green: 246/255, blue: 246/255),
@@ -83,20 +192,15 @@ class Lexer {
             "friend": .m_yellow,*/
     ]
     
-    init(input: String) {
-        self.input = input
-        currentIndex = input.startIndex
-    }
-    
     /// Advances the current index and sets the current character to the next character in the input string.
-    func advance() {
+    /*func advance() {
         guard currentIndex < input.endIndex else {
             currentChar = nil
             return
         }
         currentChar = input[currentIndex]
         currentIndex = input.index(after: currentIndex)
-    }
+    }*/
     
     /// Skips over any white space and comments in the input string.
     func skipWhiteSpaceAndComments() {
@@ -140,135 +244,9 @@ class Lexer {
     }
 }
 
-
-//alaternative
-
-// Define a set of possible token types
-enum TokenType {
-    case keyword
-    case identifier
-    case constant
-    case `operator`
-    case string
-}
-
-// Define a token class with a type and value
-class Token {
-    var type: TokenType
-    var value: String
-    
-    init(type: TokenType, value: String) {
-        self.type = type
-        self.value = value
-    }
-}
-
-// Define a lexer class that can tokenize a string of input
-class Lexer {
-    var input: String
-    var currentChar: Character?
-    var currentIndex: String.Index
-    
-    // Initialize the lexer with the input string
-    init(input: String) {
-        self.input = input
-        self.currentIndex = input.startIndex
-    }
-    
-    // Move the current index and current character forward by one
-    func advance() {
-        if currentIndex < input.endIndex {
-            currentIndex = input.index(after: currentIndex)
-            currentChar = input[currentIndex]
-        } else {
-            currentChar = nil
-        }
-    }
-    
-    // Peek at the next character in the input string without advancing
-    func peek() -> Character? {
-        let peekIndex = input.index(after: currentIndex)
-        if peekIndex < input.endIndex {
-            return input[peekIndex]
-        } else {
-            return nil
-        }
-    }
-    
-    // Tokenize the input string and return an array of tokens
-    func tokenize() -> [Token] {
-        var tokens = [Token]()
-        while currentIndex < input.endIndex {
-            if let char = currentChar {
-                if char.isWhitespace {
-                    advance()
-                } else if char.isLetter {
-                    let value = readIdentifier()
-                    let type = checkType(identifier: value)
-                    tokens.append(Token(type: type, value: value))
-                } else if char.isNumber {
-                    let value = readNumber()
-                    tokens.append(Token(type: .constant, value: value))
-                } else if char == "\"" {
-                    let value = readString()
-                    tokens.append(Token(type: .string, value: value))
-                } else if "+-*/%".contains(char) {
-                    advance()
-                    tokens.append(Token(type: .operator, value: String(char)))
-                } else {
-                    advance()
-                }
-            }
-        }
-        return tokens
-    }
-    
-    // Read an identifier from the input string
-    private func readIdentifier() -> String {
-        var value = ""
-        while let char = currentChar, char.isLetterOrDigit {
-            value.append(char)
-            advance()
-        }
-        return value
-    }
-    
-    // Read a number from the input string
-    private func readNumber() -> String {
-        var value = ""
-        while let char = currentChar, char.isNumber {
-            value.append(char)
-            advance()
-        }
-        return value
-    }
-    
-    // Read a string from the input string
-    private func readString() -> String {
-        advance()
-        var value = ""
-        while let char = currentChar, char != "\"" {
-            value.append(char)
-            advance()
-        }
-        advance()
-        return value
-    }
-    
-    // Check the type of an identifier and return the appropriate TokenType
-    private func checkType(identifier: String) -> TokenType {
-        switch identifier {
-        case "int", "float", "double", "char":
-            return .keyword
-        default:
-            return .identifier
-        }
-    }
-}
-
 // Highlight the types in an input string by returning an attributed string with appropriate colors
-func highlightTypes(input: String) -> NSAttributedString {
+/*func highlightTypes(input: String) -> NSAttributedString {
     let lexer = Lexer(input: input)
     let tokens = lexer.tokenize()
     let result = NSMutableAttributedString(string: "")
-
+}*/

@@ -5,7 +5,7 @@
 //  Created by MM & DS
 //
 
-import SwiftUI
+/*import SwiftUI
 
 struct WelcomeScreenView: View {
     var body: some View {
@@ -16,7 +16,7 @@ struct WelcomeScreenView: View {
                     Spacer()
                     //Image(uiImage: #imageLiteral(resourceName: "onboard"))
                     Spacer()
-                    PrimaryButton(title: "Get Started")
+                    //PrimaryButton(title: "Get Started")
                     
                     NavigationLink(
                         destination: SignInScreenView().navigationBarHidden(true),
@@ -50,5 +50,5 @@ struct WelcomeScreenView_Previews: PreviewProvider {
     static var previews: some View {
         WelcomeScreenView()
     }
-}
+}*/
 
